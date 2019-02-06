@@ -1,0 +1,48 @@
+@mixin generate ($variabili, $contesto: null) {
+
+	@each $documento, $dati in $variabili {
+
+		@if $contesto {
+
+			&.#{$documento} {
+
+				@each $chiave, $valore in $dati {
+
+					#{$chiave}: $valore;
+				}
+
+			}
+
+		} @else {
+
+			.#{$documento} {
+
+				@each $chiave, $valore in $dati {
+
+					#{$chiave}: $valore;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+@mixin generate_child ($variabili) {
+
+	@each $documento, $dati in $variabili {
+
+		& > .#{$documento} {
+
+			@each $chiave, $valore in $dati {
+
+				#{$chiave}: $valore;
+			}
+
+		}
+
+	}
+
+}

@@ -1,0 +1,7 @@
+//	Auto generato
+@import '_variables';
+@import '../mixins/mixins';
+
+.${file_name} {
+  @include generate($${file_name});
+}

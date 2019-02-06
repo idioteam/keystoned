@@ -26,6 +26,10 @@ function init (conf) {
             module.exports.sitemap = require('./lib/sitemap');
         }
 
+        if (k === 'theme') {
+            module.exports.theme = require('./lib/theme');
+            module.exports.theme.config(typeof conf[k] === 'object' ? conf[k] : {})
+        }
     })
 
 }
