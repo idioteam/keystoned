@@ -8,6 +8,11 @@ function init (conf) {
             module.exports.config = require('./lib/config')(conf[k]);
         }
 
+        if (k === 'minify_js' && conf[k]) {
+            module.exports.minify_js = require('./lib/minify-js');
+            module.exports.minify_js.config(conf[k]);
+        }
+
     })
 
 }
