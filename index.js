@@ -17,6 +17,11 @@ function init (conf) {
             module.exports.model_queries = require('./lib/model_queries');
         }
 
+        if (k === 'seo' && conf[k]) {
+            module.exports.seo = require('./lib/seo');
+            module.exports.seo.config(conf[k]);
+        }
+
         if (k === 'sitemap' && conf[k]) {
             module.exports.sitemap = require('./lib/sitemap');
         }
