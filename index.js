@@ -13,6 +13,10 @@ function init (conf) {
             module.exports.minify_js.config(conf[k]);
         }
 
+        if (k === 'sitemap' && conf[k]) {
+            module.exports.sitemap = require('./lib/sitemap');
+        }
+
     })
 
 }
