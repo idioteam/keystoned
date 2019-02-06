@@ -8,6 +8,12 @@ function init (conf) {
             module.exports.config = require('./lib/config')(conf[k]);
         }
 
+        if (k === 'i18n' ) {
+            _modules.i18n = require('./lib/i18n');
+            module.exports.i18n = require('./lib/i18n');
+            module.exports.i18n.init(conf[k]);
+        }
+
         if (k === 'minify_js' && conf[k]) {
             module.exports.minify_js = require('./lib/minify-js');
             module.exports.minify_js.config(conf[k]);
