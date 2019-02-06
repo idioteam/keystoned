@@ -13,6 +13,10 @@ function init (conf) {
             module.exports.minify_js.config(conf[k]);
         }
 
+        if (k === 'model_queries' && conf[k]) {
+            module.exports.model_queries = require('./lib/model_queries');
+        }
+
         if (k === 'sitemap' && conf[k]) {
             module.exports.sitemap = require('./lib/sitemap');
         }
