@@ -4,6 +4,8 @@ function init (conf) {
     const modules = {};
     Object.keys(conf).forEach(k => {
 
+        module.exports.cookies = require('./lib/cookies');
+
         if (k === 'config') {
             module.exports.config = require('./lib/config')(conf[k]);
         }
