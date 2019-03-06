@@ -10,8 +10,8 @@ function init (conf) {
             module.exports.config = require('./lib/config')(conf[k]);
         }
 
-        if (k === 'i18n' ) {
-            _modules.i18n = require('./lib/i18n');
+        if (k === 'i18n' && conf[k] ) {
+            module.i18n = require('./lib/i18n');
             module.exports.i18n = require('./lib/i18n');
             module.exports.i18n.init(conf[k]);
         }
