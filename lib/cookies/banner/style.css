@@ -29,6 +29,7 @@
 }
 
 #cookie-banner-backdrop {
+	cursor: pointer;
 	position: fixed;
 	z-index: 9999;
 	width: 100vw;
