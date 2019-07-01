@@ -1,6 +1,6 @@
 {
   "name": "keystoned",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Strumenti per siti sviluppati in keystone",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yazevedopure/keystoned.git"
+    "url": "git+https://github.com/idioteam/keystoned.git"
   },
   "author": "m.pini@nsi.it",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yazevedopure/keystoned/issues"
+    "url": "https://github.com/idioteam/keystoned/issues"
   },
-  "homepage": "https://github.com/yazevedopure/keystoned#readme",
+  "homepage": "https://github.com/idioteam/keystoned#readme",
   "dependencies": {
     "connect-mongodb-session": "^2.0.8",
     "express-sitemap": "^1.8.0",
