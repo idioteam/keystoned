@@ -12,35 +12,21 @@ quando il modulo viene incluso accetta un oggetto di configurazione con le segue
 - ***twitter_cards*** (Boolean) se attivare o meno le twitter card. *default: true*
 - ***open_graph*** (Boolean) se attivare o meno le open graph. *default: true*
 
-## seo.add (oggetto)
-Metodo che consente di aggiungere ad un modello i campi della seo.
+## abilitare seo sul modello
+Campo che consente di aggiungere ad un modello i campi della seo.
 Attraverso questo metodo vengono aggiunti 3 campi
 - seo_page_title -> consente di inserire il titolo della pagina
 - seo_meta_description -> consente di inserire meta description
 - seo_page_thumbnail -> consente di specificare una thumbnail da utilizzare per microformat, opengraph, twitter card ed altri compinenti simili
 
-Il metodo accetta un oggetto come argomento che può essere direttamente la lista (modello) alla quale aggiungere i campi oppure un oggetto contenente un elenco di campi. Questa seconda opzione consente di utilizzare questo modulo congiuntamente al modulo i18n.
-Esempio con lista:
+Il campo va impostato a true per abilitarlo
 ```
-const Lista = new keystone.List('Lista');
-Lista.add(...);
-seo.add(Lista);
-```
-Esempio con multilingua
-```
-constLista = new keystone.List('Lista');
-//  campi da internazionalizzare
-const campi = {
-    titolo: {type: String},
-    descrizione:{type: String}
-}
-//  Aggiungo i campi seo ai campi da internazionalizzare
-seo.add(campi);
-//  Passo la lista dei campi al metodo di internazionalizzazione
-i18n.models.create_fields(Lista, campi);
+const Lista = new keystone.List('Lista', {
+    seo: true,
+});
 ```
 
-## seo.complete(configurazione)
+## [DEPRECATO] seo.complete(configurazione)
 Questo metodo deve essere invocato nei controller delle routes per inviare informazioni aggiuntive al template che verranno incluse attraverso i mixins.
 Il metodo accetta un oggetto di configurazione che consente di specificare quali informazioni stampare.
 Lista delle chiavi:

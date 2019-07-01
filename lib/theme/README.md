@@ -30,7 +30,7 @@ Il metodo ``set`` consente di attivare la funzionalità di autogenerazione dei c
 Il parametro *modello* corrisponde ad un modello (keystone.list), mentre il parametro *campi* è un array di oggetti che mappa i campi da gestire durante la generazione del css.
 Esempio:
 ```
-ITm.theme.init(Gallery, [{field: 'bg_color', prop: 'background-color'}, {field: 'bg_image', prop: 'background-image'}]);
+keystoned.theme.init(Gallery, [{field: 'bg_color', prop: 'background-color'}, {field: 'bg_image', prop: 'background-image'}]);
 ```
 Ciascun elemento di *campi* può essere:
 - un oggetto in cui *field* rappresenta il nome del campo del modello e *prop* il nome della proprietà css da associargli. L'esempio precedente mappa il campo 'bg_image' sulla proprietà 'background-image'.

@@ -43,55 +43,16 @@ Gestisce il locale e lo imposta coerentemente con la route.
 Questo middleware setta il locale in base ad un cookie senza necessità di specificare diverse route.
 
 ## i18n.model
-Viene esposto il metodo create_fields che consente di creare una copia dei campi passati per ciascuna lingua gestita
+Per aggiungere più lingue ad un campo basta aggiungere il parametro `i18n: true` nella dichiarazione nel modello.
+Di default ho impostato la Object Notation, in questo modo è possibile accedere ai vari campi nella vista in questo modo:
+`modello.nome_campo[locale]`, dove locale è la variabile aggiunta dal middleware.
 
-### i18n.model.create_fields(modello, campi, usa_selettore_lingue = false, titolo = '')
-Il metodo, da utilizzare nella definizione di un modello, consente di creare una copia dei campi per ciascuna lingua gestita
-Parametri:
-- modello: il modello a cui applicare i campi
-- campi: oggetto contenente i campi da internazionalizzare. Contiene la normale definizione dei campi.
-- usa_selettore_lingue (false) se true (attualmente deprecato) inserisce un campo che permette di visualizzare solo i campi della lingua corrispondente. Questa opzione, anche se migliore dal punto di vista della UX funziona male perchè costringe a salvare i dati prima di ogni cambio della lingua
-- titolo ('') consente di aggiungere un titolo per gli header delle lingue che di default riportano il nome della lingua.
-
-Esempio
+> #### Esempi
 ```
-i18n.models.create_fields(
-	Enquiry,
-	{
-		h: {heading: 'prova'},
-		test_title: { type: String },
-		h2: {heading: {it:'heading italiano', en:'english header'}, dependsOn:{ phone: '3'}},
-		test_content: {
-			brief: { type: Types.Html, wysiwyg: true, height: 150 },
-			extended: { type: Types.Html, wysiwyg: true, height: 400 },
-		},
-	},
-	false
-);
+titolo: { type: String, initial: true, required: false, label: 'Titolo', i18n: true },
 ```
-
-> #### Definizione degli headers
-Mentre i campi possono essere definiti "normalmente", per utilizzare gli headers è necessario definirli come oggetti.
-Sono possibili 3 configurazioni:
-- come stringa ``header: 'testo header'`` in questo caso il testo dell'header è statico e verrà utilizzato per tutte le lingue
-- come oggetto ``header: {heading: 'testo header'}`` questo caso è uguale al precedente
-- come oggetto localizzato ``header: {heading: {it:'heading italiano', en:'english header'}}`` in questo caso per ciascuna lingua verrà utilizzato l'header corrispondente
-
-> #### Metodi aggiunti alla lista
-Per ogni campo tradotto viene creato un metodo col nome corrispondente al campo creato che accetta come unico argomento il locale e che ritorna il valore del campo nella lingua specificato dal locale.
-Esempio: dato il documento
 ```
-{
-    titolo_i8n_it: 'Titolo italiano',
-    titolo_i8n_en: 'Titolo inglese'
-}
-```
-il metodo ``results.titolo(locale)``  ritorna 'Titolo italiano'
-**NB** questi metodi non sono accessibili se la query viene eseguita con .lean() o con l'aggregation framework. In questi casi è possibile utilizzare ``locals.i18n.__(obj, key)`` direttamente nella vista
-
-> Inoltre viene aggiunto allo schema un metodo statico **get_name** che accetta il nome di un campo ed il locale che ritorna il nome di un campo internazionalizzato
-```
-    Modello.schema.statics.get_name('titolo', locale) // ritorna 'titolo_i18n_en' se locale === 'en'
+h1= data.post.titolo[locale]
 ```
 
 ## i18n.routes

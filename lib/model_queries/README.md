@@ -7,12 +7,12 @@ Inoltre aggiunge due hook per invalidare la cache salvata quando vengono modific
 Questo metodo può essere richiamato dopo che la lista è stata registrata
 Esempio:
 ```
-const IT = require('IdioTools')
+const keystoned = require('keystoned')
 const Post = new keystone.List('Post', {....
     ...
 });
 Post.register();
-IT.model_queries.init(Post);
+keystoned.model_queries.init(Post);
 ```
 
 Successivamente all'esecuzione di ``init`` vengono aggiunti alla lista due metodi statici:
@@ -24,7 +24,7 @@ Questo metodo crea nella cache della lista un oggetto identificato da cache_id a
 Esempio:
 ```
 Post.register();
-IT.model_queries.init(Post);
+keystoned.model_queries.init(Post);
 Post.schema.statics.query.set('last_post', Post.model.findOne({}).sort('createdAt')); // Memorizza la query per ottenere il post più recente
 ```
 ## Lista.schema.statics.query.get (cache_id)
@@ -46,6 +46,26 @@ view.on('init', function (next) {
             next(err);
         }
     )
+
+});
+
+...
+```
+
+With async/await
+
+```
+...
+
+view.on('init', async function (next) {
+
+    try {
+        locals.last_post = await Post.schema.statics.query.get('last_post');
+        next();
+    }
+    catch (e) {
+        next(e);
+    }
 
 });
 

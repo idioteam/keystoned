@@ -4,12 +4,12 @@ Esempio:
 ```
 //  Sitemap
 app.get('/sitemap.xml', function (req, res) {
-    idioTools.sitemap.create(keystone, req, res, {
+    keystoned.sitemap.create(keystone, req, res, {
         filters: {
             Post: { stato: 1 },
             blogCategorie__padre: { padre: null }
         },
-        ignore: idioTools.i18n.get_conf().redirections
+        ignore: keystoned.i18n.get_conf().redirections
     });
 });
 ```
