@@ -1,6 +1,6 @@
 {
   "name": "keystoned",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Strumenti per siti sviluppati in keystone",
   "main": "index.js",
   "scripts": {
